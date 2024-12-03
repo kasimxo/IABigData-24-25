@@ -113,6 +113,11 @@ PermutarColumnas<-function(tabla,permutacion){
   return (tabla)
 }
 
+TestNormalidadColumna<-function(columna){
+  prueba<-ks.test(columna, "pnorm", mean=mean(columna),sd=sd(columna))
+  return (prueba)
+}
+
 
 ### --- --- EJERCICIOS --- --- ###
 
@@ -149,12 +154,13 @@ head(Salud)
 Salud[,1]<-Salud[,1]-ruido1
 head(Salud)
 
-# Ejercicio 4: Test ks de normalidad para la edad
+# Ejercicio 4: Test ks de normalidad para la columna edad
+
 # Test de normalidad (test de ks) Columna Age
 # Si has codificado las cabeceras, importante tenerlo en cuenta
-prueba<-ks.test(Salud$MQG, "pnorm", mean=mean(Salud$MQG),sd=sd(Salud$MQG))
+TestNormalidadColumna(Salud$MQG)
 # Si el p_value < 0.05, NO ES UNA UNIFORME
-prueba
+
 # Regresión de age a través de Billing.Amount
 
 # Test de chow según sexo
