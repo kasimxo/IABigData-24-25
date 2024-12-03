@@ -1,7 +1,16 @@
-data<-read.csv(file.choose(),header=TRUE,sep=',')
+### --- --- Test de Chow (sctest) --- --- ###
+### --- ---       Funciones       --- --- ###
+
+data<-read.csv(file.choose(),header=TRUE,sep=',') # Diabetes
 head(data)
 data<-data[,-1]
 head(data)
+
+# Limpiamos los datos de la columna Talla
+line<-data[,7]
+line<-gsub(',','.',line)
+data[,7]<-line
+data[,7]<-as.numeric(data[,7])
 
 # Test de Chow
 # La idea es intentar pronostica el precio del billete en función 
@@ -11,42 +20,42 @@ head(data)
 # B) si existe permanencia estructural en base a la supervivencia
 
 # Comenzamos por estudiar una regresión lineal
-modelo<-lm(Precio~Clase+Edad+Parientes,data=data)
+modelo<-lm(data$PRN~data$P+data$T+data$Edad,data=data)
 summary(modelo)
 
 # A) 
 # Construimos un nuevo data set para los datos de un sexo
 # y a continuación los del otro sexo
-hombres<-which(data$Sexo=='male')
-mujeres<-which(data$Sexo=='female')
+hombres<-which(data$Sexo=='V')
+mujeres<-which(data$Sexo=='M')
 
 corte<-length(hombres)
 corte
 
-Survived<-data[hombres,]$Survived
-Survived<-append(Survived,data[mujeres,]$Survived)
-
-
-Clase<-data[hombres,]$Clase
-Clase<-append(Clase,data[mujeres,]$Clase)
-
-
+Sexo<-data[hombres,]$Sexo
+Sexo<-append(Sexo,data[mujeres,]$Sexo)
+Parto<-data[hombres,]$Parto
+Parto<-append(Parto,data[mujeres,]$Parto)
+Cordon<-data[hombres,]$Cordon
+Cordon<-append(Cordon,data[mujeres,]$Cordon)
+Aceite<-data[hombres,]$Aceite
+Aceite<-append(Aceite,data[mujeres,]$Aceite)
 Edad<-data[hombres,]$Edad
 Edad<-append(Edad,data[mujeres,]$Edad)
+PRN<-data[hombres,]$PRN
+PRN<-append(PRN,data[mujeres,]$PRN)
+P<-data[hombres,]$P
+P<-append(P,data[mujeres,]$P)
+T<-data[hombres,]$T
+T<-append(T,data[mujeres,]$T)
 
-Parientes<-data[hombres,]$Parientes
-Parientes<-append(Parientes,data[mujeres,]$Parientes)
-
-Precio<-data[hombres,]$Precio
-Precio<-append(Precio,data[mujeres,]$Precio)
-
-Frame<-data.frame(Survived=Survived,Precio=Precio,Parientes=Parientes,Clase=Clase,Edad=Edad)
-Frame
+Frame<-data.frame(Sexo=Sexo,Parto=Parto,Cordon=Cordon,Aceite=Aceite,Edad=Edad,PRN=PRN,P=P,T=T)
+head(Frame)
 
 #install.packages('strucchange')
 library(strucchange)
 
-sctest(Frame$Precio~Frame$Clase+Frame$Edad+Frame$Survived+Frame$Parientes,type="Chow",point=corte)
+sctest(Frame$PRN~Frame$P+Frame$T+Frame$Edad,data=Frame,type="Chow",point=corte)
 
 # B)
 
