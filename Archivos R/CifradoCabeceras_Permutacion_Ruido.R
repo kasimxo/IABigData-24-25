@@ -113,6 +113,17 @@ PermutarColumnas<-function(tabla,permutacion){
   return (tabla)
 }
 
+DesPermutarColumnas<-function(tabla, permutacion){
+  tabla1<-tabla
+  k<-1
+  while(k<=dim(tabla)[[2]]){
+    tabla1[,permutacion[[k]]]<-tabla[,k]
+    k<-k+1
+  }
+  tabla<-tabla1
+  return (tabla)
+}
+
 TestNormalidadColumna<-function(columna){
   prueba<-ks.test(columna, "pnorm", mean=mean(columna),sd=sd(columna))
   return (prueba)
