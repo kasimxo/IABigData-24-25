@@ -1,0 +1,95 @@
+#Plantilla Pasajero
+(deftemplate Pasajero
+	(slot id (type INTEGER))
+	(slot Sexo (type SYMBOL)
+	(allowed-symbols female male))
+	(slot Edad (type SYMBOL)
+	(allowed-symbols N J A M))
+	(slot Precio (type SYMBOL)
+	(allowed-symbols A B C))
+)
+
+#Plantilla Supervivencia
+(deftemplate Supervivencia
+	(slot id (type INTEGER))
+	(slot Survived (type SYMBOL)
+	(allowed-symbols S N))
+)
+
+#Definicion de reglas
+#Regla 1
+(defrule Mujer-Si
+	(Pasajero
+		(id ?Id)
+		(Sexo female)
+		(Edad ?E)
+		(Precio ?P)
+	)
+
+=>
+(assert (Supervivencia
+		(id ?Id)
+		(Survived S)
+	)
+)
+)
+
+#Regla 2
+(defrule Hombre-Joven-No
+	(Pasajero
+		(id ?Id)
+		(Sexo male)
+		(Edad J)
+		(Precio ?P)
+	)
+=>
+	(assert
+		(Supervivencia
+			(id ?Id)
+			(Survived N)
+		)
+	)
+)
+
+#Regla 3
+(defrule Hombre-N-Si
+	(Pasajero
+		(id ?Id)
+		(Sexo male)
+		(Edad N)
+		(Precio ?P)
+	)
+=>
+	(assert
+		(Supervivencia
+			(id ?Id)
+			(Survived S)
+		)
+	)
+)
+
+#Lista de hechos
+(deffacts hechos
+	(Pasajero (id 1)(Sexo female)(Edad J)(Precio A))
+	(Pasajero (id 2)(Sexo female)(Edad A)(Precio A))
+	(Pasajero (id 3)(Sexo female)(Edad A)(Precio A))
+	(Pasajero (id 4)(Sexo male)(Edad J)(Precio A))
+	(Pasajero (id 5)(Sexo female)(Edad A)(Precio A))
+	(Pasajero (id 6)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 7)(Sexo female)(Edad M)(Precio A))
+	(Pasajero (id 8)(Sexo female)(Edad A)(Precio B))
+	(Pasajero (id 9)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 10)(Sexo female)(Edad A)(Precio A))
+	(Pasajero (id 11)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 12)(Sexo female)(Edad M)(Precio A))
+	(Pasajero (id 13)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 14)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 15)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 16)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 17)(Sexo female)(Edad M)(Precio A))
+	(Pasajero (id 18)(Sexo male)(Edad J)(Precio C))
+	(Pasajero (id 19)(Sexo female)(Edad J)(Precio A))
+	(Pasajero (id 20)(Sexo male)(Edad J)(Precio C))
+)
+
+# Para ejecutarlo, por orden: (reset) (agenda) (run) (facts)
