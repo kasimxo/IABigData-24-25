@@ -120,3 +120,10 @@ muestra<-rnorm(length(desconocidos),mean(ConocidosNoatipicos),sd(ConocidosNoatip
 data$Age[desconocidos]<-muestra
 data<-data[-Atipicos,]
 
+head(data)
+length(which(is.na(data$Fate)))
+
+length(which(is.na(data$Passenger.Crew)))
+length(which(is.na(data$Adult.Minor)))
+length(which(is.na(data$Citizenship)))
+length(which(is.na(data$Sex)))
