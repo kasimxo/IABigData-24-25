@@ -7,4 +7,4 @@
 | LusitaniaManifest   | Dataset del desastre del Lusitania | Archivo con NA en la columna Edad |
 | Titanic             | Dataset del desastre del Titanic | |
 | Titaniccualitativo  | Dataset del desastre del Titanic | Archivo del Titanic con todos los atributos como texto. |
-| titanic-ing         | Dataset del desastre del Titanic | Archivo bruto. Contiene NA en la columna Edad. Útil para reconstruir archivos |
+| Titanic-ing         | Dataset del desastre del Titanic | Archivo bruto. Contiene NA en la columna Edad. Útil para reconstruir archivos |
