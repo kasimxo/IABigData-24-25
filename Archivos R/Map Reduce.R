@@ -77,4 +77,119 @@ CountHombreN<-ReduceSexoSupervivencia(HombreN)
 frameSexoSupervivencia<-data.frame(Si=c(CountMujerS,CountHombreS),
                                    No=c(CountMujerN,CountHombreN),
                                    row.names = c("Mujer","Hombre"))
+
+# Mostramos el resultado:
 frameSexoSupervivencia
+
+# CHI CUADRADO
+# Determina si dos variables categóricas están relacionadas 
+# (es decir, si son dependientes) o si son independientes.
+chisq.test(frameSexoSupervivencia)
+# Si el p_value está por debajo del umbral quiere decir que ESTÁN relacionadas
+
+# Resulta mucho más útil ver los datos en "relativo", es decir,
+# teniendo en cuenta el total
+total<-sum(frameSexoSupervivencia)
+frameSexo
+SupervivenciaRelativo<-data.frame(Si=c(CountMujerS/total,CountHombreS/total),
+                                   No=c(CountMujerN/total,CountHombreN/total),
+                                   row.names = c("Mujer","Hombre"))
+
+frameSexoSupervivenciaRelativo
+
+
+# Calculo de probabilidades
+# probabilidad P(Si/H)=P(Si^H)P(H)
+PMujerS<-frameSexoSupervivenciaRelativo$Si[[1]]/sum(frameSexoSupervivenciaRelativo[1,])
+PMujerS
+PMujerN<-frameSexoSupervivenciaRelativo$No[[1]]/sum(frameSexoSupervivenciaRelativo[1,])
+PMujerN
+PHombreS<-frameSexoSupervivenciaRelativo$Si[[2]]/sum(frameSexoSupervivenciaRelativo[2,])
+PHombreS
+PHombreN<-frameSexoSupervivenciaRelativo$No[[2]]/sum(frameSexoSupervivenciaRelativo[2,])
+PHombreN
+
+# Prueba chi.cuadrado para estudiar la dependencia entre el deporte y el tabaco
+# Preparamos el dataframe
+depFrec<-c(7,87,12,9)
+depEsp<-c(4,102,7,8)
+tabla<-data.frame(Frec=depFrec,Esp=depEsp,row.names = c("M","N","O","F"))
+tabla
+
+chisq.test(tabla)
+# Como el p_value es 0.3571, no podemos decir que tengan relación
+
+
+# Ahora vamos a probar con el data set de titaniccualitativo
+# Saber si sobrevive según la clase
+data<-read.csv(file.choose(),header=TRUE,sep=',')
+head(data)
+
+MapClaseSupervivencia<-function(clase, supervivencia){
+  x<-c()
+  i<-1
+  while(i<=dim(data)[[1]]){
+    if(data$Clase[[i]]==clase&&data$Survived[[i]]==supervivencia){
+      x<-append(x, 1)
+    }
+    i<-i+1
+  }
+  return(x)
+}
+
+PS<-MapClaseSupervivencia('P','Si')
+PN<-MapClaseSupervivencia('P','No')
+SS<-MapClaseSupervivencia('S','Si')
+SN<-MapClaseSupervivencia('S','No')
+TS<-MapClaseSupervivencia('T','Si')
+TN<-MapClaseSupervivencia('T','No')
+
+ReduceClaseSupervivencia<-function(x){
+  y<-sum(x)
+  return (y)
+}
+
+CountPS<-ReduceClaseSupervivencia(PS)
+CountPN<-ReduceClaseSupervivencia(PN)
+CountSS<-ReduceClaseSupervivencia(SS)
+CountSN<-ReduceClaseSupervivencia(SN)
+CountTS<-ReduceClaseSupervivencia(TS)
+CountTN<-ReduceClaseSupervivencia(TN)
+
+frameClaseSupervivencia<-data.frame(Si=c(CountPS,CountSS, CountTS),
+                                   No=c(CountPN,CountSN,CountTN),
+                                   row.names = c("Primera","Segunda","Tercera"))
+
+# Mostramos el resultado:
+frameClaseSupervivencia
+
+# Podemos hacer el chis cuadrado
+chisq.test(frameClaseSupervivencia)
+# Como el p_value está por debajo del umbral, están relacionas
+
+# Ahora lo ponemos en relativo 
+totalClaseSupervivencia<-sum(frameClaseSupervivencia)
+frameClaseSupervivenciaRelativo<-data.frame(Si=c(CountPS/totalClaseSupervivencia,
+                                         CountSS/totalClaseSupervivencia,
+                                         CountTS/totalClaseSupervivencia),
+                                    No=c(CountPN/totalClaseSupervivencia,
+                                         CountSN/totalClaseSupervivencia,
+                                         CountTN/totalClaseSupervivencia),
+                                    row.names = c("Primera","Segunda","Tercera"))
+
+# Mostramos el resultado:
+frameClaseSupervivenciaRelativo
+
+# Calculo probabilidades
+PPS<-frameClaseSupervivenciaRelativo$Si[[1]]/sum(frameClaseSupervivenciaRelativo[1,])
+PPN<-frameClaseSupervivenciaRelativo$No[[1]]/sum(frameClaseSupervivenciaRelativo[1,])
+PSS<-frameClaseSupervivenciaRelativo$Si[[2]]/sum(frameClaseSupervivenciaRelativo[2,])
+PSN<-frameClaseSupervivenciaRelativo$No[[2]]/sum(frameClaseSupervivenciaRelativo[2,])
+PTS<-frameClaseSupervivenciaRelativo$Si[[3]]/sum(frameClaseSupervivenciaRelativo[3,])
+PTN<-frameClaseSupervivenciaRelativo$No[[3]]/sum(frameClaseSupervivenciaRelativo[3,])
+PPS
+PPN
+PSS
+PSN
+PTS
+PTN
