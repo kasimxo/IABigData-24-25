@@ -32,8 +32,28 @@
 )
 )
 
-
-
-
+# Se han extraído de forma consecutiva, lo suyo es sacarlos de forma aleatoria
+(deffacts hechos
+	(Pasajero (id 1)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Pasajero (id 2)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Pasajero (id 3)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Pasajero (id 4)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Pasajero (id 5)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Pasajero (id 6)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 7)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 8)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 9)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 10)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 11)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 12)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 13)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 14)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 15)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 16)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 17)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 18)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 19)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Pasajero (id 20)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+)
 
 
