@@ -1,0 +1,39 @@
+# Archivo Lusitania
+# Plantilla Persona
+(deftemplate persona
+	(slot id (type INTEGER))
+	(slot sexo (type SYMBOL) (allowed-symbols Male Female))
+	(slot status (type SYMBOL) (allowed-symbols Single Married Otros))
+	(slot adult (type SYMBOL) (allowed-symbols Adult Minor Infant))
+	(slot clase (type STRING))
+)
+
+# Plantilla Pasajero
+(deftemplate Pasajero
+	(slot id (type INTEGER))
+	(slot tipo (type SYMBOL) (allowed-symbols Crew Passenger))
+)
+
+# Regla 1
+(defrule Hombre-casado-pasajero
+	(persona 
+		(id ?id)
+		(sexo Male)
+		(status Married)
+		(adult ?Adulto)
+		(clase ?clase)
+	)
+=>
+(assert 
+	(Pasajero 
+		(tipo Passenger) 
+		(id ?id)
+	)
+)
+)
+
+
+
+
+
+

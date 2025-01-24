@@ -193,3 +193,52 @@ PSS
 PSN
 PTS
 PTN
+
+
+# Ejercicio:
+# Dataset: Lusitania
+# 1.a) Map(Sexo, status, Survived) Retorna vector de 1 y 0
+#     i)  x<-Map("Male", "Married", "Saved")
+#     ii) y<-Map("Female", "Single", "Lost)
+#   b) Reduce: Test de proporciones entre x e y
+dataLusitania<-read.csv(file.choose(),header=TRUE,sep=',')
+MapLusitania<-function(sexo, estado, sobrevive){
+  x<-c()
+  i<-1
+  while(i<=dim(dataLusitania)[[1]]){
+    if(dataLusitania$Sex[[i]]==sexo &&
+       dataLusitania$Status[[i]]==estado &&
+       dataLusitania$Survived[[i]]==sobrevive){
+      x<-append(x, 1)
+    } else {
+      x<-append(x,0)
+    }
+    i<-i+1
+  }
+  return (x)
+}
+
+HombreCasadoSi<-MapLusitania("Male", "Married", "Saved")
+MujerSolteraNo<-MapLusitania("Female", "Single", "Lost")
+
+ReduceLusitania<-function(x){
+  y<-sum(x)
+  return (y)
+}
+
+CuentaHombreCasadoSi<-ReduceLusitania(HombreCasadoSi)
+CuentaMujerSolteraNo<-ReduceLusitania(MujerSolteraNo)
+
+dataFrameLusitania<-data.frame(Hombre=CuentaHombreCasadoSi, Mujer=CuentaMujerSolteraNo)
+dataFrameLusitania
+
+length(HombreCasadoSi)
+
+prop.test(c(CuentaHombreCasadoSi, CuentaMujerSolteraNo),c(length(HombreCasadoSi), length(MujerSolteraNo)), 
+          alternative = "two.sided",
+  conf.level = 0.95)
+
+total<- sum(CuentaHombreCasadoSi, CuentaMujerSolteraNo)
+prop.test(c(CuentaHombreCasadoSi, CuentaMujerSolteraNo),c(total, total), 
+          alternative = "two.sided",
+          conf.level = 0.95)
