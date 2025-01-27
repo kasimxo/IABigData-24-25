@@ -1,6 +1,6 @@
 # Archivo Lusitania
 # Plantilla Persona
-(deftemplate persona
+(deftemplate Persona
 	(slot id (type INTEGER))
 	(slot sexo (type SYMBOL) (allowed-symbols Male Female))
 	(slot status (type SYMBOL) (allowed-symbols Single Married Otros))
@@ -16,7 +16,7 @@
 
 # Regla 1
 (defrule Hombre-casado-pasajero
-	(persona 
+	(Persona 
 		(id ?id)
 		(sexo Male)
 		(status Married)
@@ -34,26 +34,26 @@
 
 # Se han extraído de forma consecutiva, lo suyo es sacarlos de forma aleatoria
 (deffacts hechos
-	(Pasajero (id 1)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
-	(Pasajero (id 2)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
-	(Pasajero (id 3)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
-	(Pasajero (id 4)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
-	(Pasajero (id 5)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
-	(Pasajero (id 6)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 7)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 8)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 9)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 10)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 11)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 12)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 13)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 14)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 15)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 16)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 17)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 18)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 19)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
-	(Pasajero (id 20)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 1)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Persona (id 2)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Persona (id 3)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Persona (id 4)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Persona (id 5)(sexo Male)(status Married)(adult Adult)(clase 'Band'))
+	(Persona (id 6)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 7)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 8)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 9)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 10)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 11)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 12)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 13)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 14)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 15)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 16)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 17)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 18)(sexo Male)(status Single)(adult Adult)(clase 'Deck'))
+	(Persona (id 19)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
+	(Persona (id 20)(sexo Male)(status Married)(adult Adult)(clase 'Deck'))
 )
 
 
