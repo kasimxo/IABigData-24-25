@@ -2,6 +2,8 @@
 
 | Archivo             | Contenido | Detalles |
 | ------------------- | --------- | -------- |
+| acq/                | Directorio con archivos para minería de texto | NA |
+| crude/              | Directorio con archivos para minería de texto | NA |
 | Iris                | Dataset de 3 especies de flores distintas | NA |
 | Lusitania           | Dataset del desastre del Lusitania | |
 | LusitaniaManifest   | Dataset del desastre del Lusitania | Archivo con NA en la columna Edad |
