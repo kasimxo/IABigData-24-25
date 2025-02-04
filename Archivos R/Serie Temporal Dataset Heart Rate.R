@@ -20,7 +20,7 @@ dataset[1,] # Primera fecha: 2021-06-14 15:30:59
 limDate<-as.POSIXct("6/28/2021, 3:31:00 PM", format = "%m/%d/%Y, %I:%M:%S %p")
 filas<-which(dataset$Date<limDate)
 
-dataset_week<-dataset[filas,]
+dataset_week<-dataset
 
 #Hacemos limpieza de datos duplicados (misma fecha y hora)
 duplicados<-duplicated(dataset_week$Date)
@@ -33,13 +33,16 @@ datos_sin_duplicados <- dataset_week[-duplicados, ]
 serie_temp_zoo <- zoo(datos_sin_duplicados$Heart_Rate, order.by = datos_sin_duplicados$Date)
 
 # Podemos mostrarlo en un gráfico
-plot(serie_temp_zoo, main = "Temperatura Corporal a lo largo del tiempo")
+plot(serie_temp_zoo, main = "Frecuencia cardiaca a lo largo del tiempo")
 
 # Creamos intervalos de tiempo regulares para poder normalizar el dataset
 intervalos <- seq(from = min(datos_sin_duplicados$Date), to = max(datos_sin_duplicados$Date), by = "10 min")
 
 # Finalmente normalizamos el dataset
 serie_temp_interpolada_5min <- zoo(na.approx(serie_temp_zoo, xout = intervalos), order.by = intervalos)
+
+serie_temp_interpolada_5min
+write.csv(serie_temp_interpolada_5min, file.choose())
 
 # Definimos la frecuencia: 24 h * 60 min / 10 min
 frequency(serie_temp_interpolada_5min) <- 144 
