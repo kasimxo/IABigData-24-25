@@ -29,7 +29,7 @@ while(i<=length(splitDate)){
 
 value<-as.numeric(gsub(",",".",data$VALOR))
 
-table<-data.frame(Year=year, Month=month, Value=valor)
+table<-data.frame(Year=year, Month=month, Value=value)
 table # Examinamos y vemos que el primer valor es Septiembre de 2008
 
 invYear<-c()
@@ -77,25 +77,4 @@ horizonte_pred <- 5  # Número de pasos a predecir
 predicciones <- forecast(modelo, h = horizonte_pred)
 predicciones
 
-
-# Crear un gráfico con los últimos datos y predicciones
-length(tdata)
-plot(datos_recientes)
-plot(tdata, 
-     type = "l", 
-     col = "blue", 
-     lwd = 2, 
-     xlim = c(start(tdata)[[1]],end(tdata)[[1]]+5),
-     ylim = c(min(tdata) - 5,
-              max(tdata) + 5),
-     main = "Últimos 100 datos y Predicciones", 
-     ylab = "Valor", 
-     xlab = "Tiempo")
-
-# Agregar las predicciones al gráfico
-lines((end(tdata)[[1]] + 1) : (end(tdata)[[1]] + horizonte_pred), predicciones$mean, col = "red", lwd = 2)
-
-# Agregar bandas de confianza
-lines((end(tdata)[[1]] + 1) : (end(tdata)[[1]] + horizonte_pred), predicciones$lower[,2], col = "gray", lty = 2)
-lines((end(tdata)[[1]] + 1) : (end(tdata)[[1]] + horizonte_pred), predicciones$upper[,2], col = "gray", lty = 2)
-
+plot(predicciones)
