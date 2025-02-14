@@ -1,0 +1,73 @@
+#--- PLANTILLAS ---#
+# Plantilla votante
+(deftemplate votante
+	(slot id (type INTEGER))
+	(slot Medicamentos (type SYMBOL) (allowed-symbols y n))
+	(slot Petroleo (type SYMBOL) (allowed-symbols y n))
+	(slot Presupuestos (type SYMBOL) (allowed-symbols y n))
+)
+
+# Plantilla Opinion
+
+(deftemplate voto
+	(slot id (type INTEGER))
+	(slot Opinion (type SYMBOL) (allowed-symbols republican democrat))
+)
+
+#--- REGLAS ---#
+
+# Regal 1 MedicamentosNDemocrata
+(defrule MedicamentosNDemocrata
+	(declare (salience 4))
+	(votante (id ?I) (Medicamentos n) (Petroleo ?P) (Presupuestos ?Q))
+=>
+(assert (voto (id ?I) (Opinion democrat)))
+)
+
+# Regla 2 MedicamentosYPetroleoNRepublicano
+(defrule MedicamentosYPetroleoNRepublicano
+	(declare (salience 3))
+	(votante (id ?I) (Medicamentos y) (Petroleo n) (Presupuestos ?Q))
+=>
+(assert (voto (id ?I) (Opinion republican)))
+)
+
+# Regla 3 MedicamentosYPetroleoYPresupuestosNRepublicano
+(defrule MedicamentosYPetroleoYPresupuestosNRepublicano
+	(declare (salience 2))
+	(votante (id ?I) (Medicamentos y) (Petroleo n) (Presupuestos ?Q))
+=>
+(assert (voto (id ?I) (Opinion republican)))
+)
+
+# Regla 4 MedicamentosYPetroleoYPresupuestosYDemocrata
+(defrule MedicamentosYPetroleoYPresupuestosYDemocrata
+	(declare (salience 1))
+	(votante (id ?I) (Medicamentos y) (Petroleo y) (Presupuestos y))
+=>
+(assert (voto (id ?I) (Opinion democrat)))
+)
+
+#--- FACTS ---#
+(deffacts hechos
+(votante (id 26) (Medicamentos n) (Petroleo n) (Presupuestos y))
+(votante (id 82) (Medicamentos n) (Petroleo y) (Presupuestos y))
+(votante (id 161) (Medicamentos n) (Petroleo n) (Presupuestos n))
+(votante (id 375) (Medicamentos y) (Petroleo n) (Presupuestos n))
+(votante (id 421) (Medicamentos y) (Petroleo n) (Presupuestos y))
+(votante (id 342) (Medicamentos y) (Petroleo y) (Presupuestos y))
+(votante (id 150) (Medicamentos n) (Petroleo n) (Presupuestos y))
+(votante (id 381) (Medicamentos n) (Petroleo y) (Presupuestos y))
+(votante (id 71) (Medicamentos n) (Petroleo n) (Presupuestos y))
+(votante (id 120) (Medicamentos y) (Petroleo n) (Presupuestos n))
+(votante (id 75) (Medicamentos n) (Petroleo y) (Presupuestos y))
+(votante (id 59) (Medicamentos y) (Petroleo n) (Presupuestos n))
+(votante (id 80) (Medicamentos y) (Petroleo n) (Presupuestos n))
+(votante (id 282) (Medicamentos y) (Petroleo n) (Presupuestos y))
+(votante (id 167) (Medicamentos y) (Petroleo n) (Presupuestos y))
+(votante (id 273) (Medicamentos n) (Petroleo n) (Presupuestos y))
+(votante (id 363) (Medicamentos n) (Petroleo y) (Presupuestos y))
+(votante (id 301) (Medicamentos y) (Petroleo n) (Presupuestos n))
+(votante (id 139) (Medicamentos n) (Petroleo n) (Presupuestos y))
+(votante (id 182) (Medicamentos n) (Petroleo y) (Presupuestos y))
+)
