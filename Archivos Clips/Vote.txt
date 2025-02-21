@@ -1,3 +1,4 @@
+# Este archivo está preparado para usarse con FUZZY CLIPS, ya que usa lógica difusa
 #--- PLANTILLAS ---#
 # Plantilla votante
 (deftemplate votante
@@ -17,32 +18,32 @@
 #--- REGLAS ---#
 
 # Regal 1 MedicamentosNDemocrata
-(defrule MedicamentosNDemocrata
-	(declare (salience 4))
+(defrule MedicamentosNDemocrata 
+	(declare (CF 0.99))
 	(votante (id ?I) (Medicamentos n) (Petroleo ?P) (Presupuestos ?Q))
 =>
 (assert (voto (id ?I) (Opinion democrat)))
 )
 
 # Regla 2 MedicamentosYPetroleoNRepublicano
-(defrule MedicamentosYPetroleoNRepublicano
-	(declare (salience 3))
+(defrule MedicamentosYPetroleoNRepublicano 
+	(declare (CF 0.92))
 	(votante (id ?I) (Medicamentos y) (Petroleo n) (Presupuestos ?Q))
 =>
 (assert (voto (id ?I) (Opinion republican)))
 )
 
 # Regla 3 MedicamentosYPetroleoYPresupuestosNRepublicano
-(defrule MedicamentosYPetroleoYPresupuestosNRepublicano
-	(declare (salience 2))
+(defrule MedicamentosYPetroleoYPresupuestosNRepublicano 
+	(declare (CF 0.8))
 	(votante (id ?I) (Medicamentos y) (Petroleo n) (Presupuestos ?Q))
 =>
 (assert (voto (id ?I) (Opinion republican)))
 )
 
 # Regla 4 MedicamentosYPetroleoYPresupuestosYDemocrata
-(defrule MedicamentosYPetroleoYPresupuestosYDemocrata
-	(declare (salience 1))
+(defrule MedicamentosYPetroleoYPresupuestosYDemocrata 
+	(declare (CF 0.75))
 	(votante (id ?I) (Medicamentos y) (Petroleo y) (Presupuestos y))
 =>
 (assert (voto (id ?I) (Opinion democrat)))
