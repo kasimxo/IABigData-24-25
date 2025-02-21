@@ -1,4 +1,7 @@
 # Este archivo está preparado para usarse con FUZZY CLIPS, ya que usa lógica difusa
+
+# Para ejecutarlo, por orden: (reset) (agenda) (run) (facts)
+
 #--- PLANTILLAS ---#
 # Plantilla votante
 (deftemplate votante

@@ -1,0 +1,73 @@
+# Para ejecutarlo, por orden: (reset) (agenda) (run) (facts)
+
+#--- Plantillas ---#
+# Plantilla votante
+(deftemplate votante
+	(slot id (type INTEGER))
+	(slot Medicamentos (type SYMBOL) (allowed-symbols y n))
+	(slot Clase (type SYMBOL) (allowed-symbols republican democrat))
+    (slot Misiles (type SYMBOL) (allowed-symbols y n))
+)
+
+# Plantilla voto
+(deftemplate voto
+	(slot id (type INTEGER))
+	(slot Petroleo (type SYMBOL) (allowed-symbols y n))
+)
+
+#-- RULES ---#
+# Regla 1 ClaseRepublican
+(defrule ClaseRepublican 
+	(declare (CF 0.89))
+	(votante (id ?I) (Clase republican) (Medicamentos ?M) (Misiles ?M))
+=>
+(assert (voto (id ?I) (Petroleo n)))
+)
+
+# Regla 2 ClaseDemocratMisilesN
+(defrule ClaseDemocratMisilesN 
+	(declare (CF 0.81))
+	(votante (id ?I) (Clase democrat) (Medicamentos ?M) (Misiles n))
+=>
+(assert (voto (id ?I) (Petroleo y)))
+)
+
+# Regla 3 ClaseDemocratMisilesYMedicamentosY
+(defrule ClaseDemocratMisilesYMedicamentosY 
+	(declare (CF 0.8))
+	(votante (id ?I) (Clase democrat) (Medicamentos y) (Misiles y))
+=>
+(assert (voto (id ?I) (Petroleo y)))
+)
+
+# Regla 4 ClaseDemocratMisilesYMedicamentosN
+(defrule ClaseDemocratMisilesYMedicamentosN
+	(declare (CF 0.72))
+	(votante (id ?I) (Clase democrat) (Medicamentos n) (Misiles y))
+=>
+(assert (voto (id ?I) (Petroleo n)))
+)
+
+#--- FACTS ---#
+(deffacts hechos
+(votante (id 415) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 107) (Medicamentos y) (Clase republican) (Misiles n))
+(votante (id 377) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 46) (Medicamentos n) (Clase democrat) (Misiles n))
+(votante (id 282) (Medicamentos y) (Clase republican) (Misiles n))
+(votante (id 28) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 47) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 84) (Medicamentos y) (Clase republican) (Misiles n))
+(votante (id 145) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 61) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 300) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 49) (Medicamentos n) (Clase democrat) (Misiles n))
+(votante (id 256) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 360) (Medicamentos y) (Clase republican) (Misiles n))
+(votante (id 381) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 262) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 384) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 371) (Medicamentos n) (Clase democrat) (Misiles n))
+(votante (id 420) (Medicamentos n) (Clase democrat) (Misiles y))
+(votante (id 429) (Medicamentos n) (Clase democrat) (Misiles y)) 
+)

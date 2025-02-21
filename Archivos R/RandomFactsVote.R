@@ -11,8 +11,8 @@ facts<-c()
 i<-1
 while(i<=n){
   row<-data[x[[i]],]
-  fact<-sprintf("(votante (id %d) (Medicamentos %s) (Petroleo %s) (Presupuestos %s))",
-               row$X, row$Medicamentos, row$Recorte.pretroleo, row$Presupuestos)
+  fact<-sprintf("(votante (id %d) (Medicamentos %s) (Clase %s) (Misiles %s))",
+               row$X, row$Medicamentos, row$Clase, row$Misiles)
   facts<-append(facts, fact)
   i<-i+1
 }
