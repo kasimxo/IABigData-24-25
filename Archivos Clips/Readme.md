@@ -11,3 +11,7 @@ Para ejecutar un archivo de clips copia su contenido parte a parte en el program
 Aunque existen varias formas de crear un sistema experto, una de las más sencillas (la que utilizamos) es emplear un software como Weka que permita la utilización de algoritmos de identificación de reglas, como el J48 o el Id3. 
 
 Analizando los resultados del algoritmo podrás identificar las reglas más relevantes y su factor de confianza si aplica. Con ello ya podrás crear las plantillas necesarias, las reglas con su factor de confianza y su orden de aplicación y preparar los hechos para probar el sistema.
+
+## Generación de Facts
+
+En la carpeta de archivos R podrás encontrar un archivo denominado [RandomFactsGenerator.R](https://github.com/kasimxo/IABigData-24-25/blob/main/Archivos%20R/RandomFactsGenerator.R) que te ayudara a extraer 20 facts aleatorios con el formato correcto de un archivo CSV. Tendrás que modificarlo un poco para que se ajuste a tus necesidades, pero puede ser un buen punto de partido.  
