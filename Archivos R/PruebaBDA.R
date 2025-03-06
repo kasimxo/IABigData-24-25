@@ -222,3 +222,37 @@ SupervivenciaRelativo<-data.frame(Si=c(CountMujerS/(CountMujerS + CountMujerN),
                                   row.names = c("Mujer","Hombre"))
 
 SupervivenciaRelativo
+
+
+
+# Pregunta 5: Gráfico de las palabras más frecuentes en los corpus crude y acq
+
+library("tm")
+
+# Selecciona la carpeta crude
+folderCrude<-choose.dir(caption = "Selecciona la carpeta crude")
+# Selecciona la carpeta acq
+folderAcq<-choose.dir(caption = "Selecciona la carpeta acq")
+
+# Crear el corpus utilizando los archivos combinados
+corpus<-Corpus(DirSource(c(folderCrude, folderAcq)), 
+               readerControl = list(reader = readPlain))
+
+corpus
+
+corpus<-tm_map(corpus, tolower)
+corpus<-tm_map(corpus, stemDocument)
+corpus<-tm_map(corpus, removeNumbers)
+corpus<-tm_map(corpus, removePunctuation)
+tdm<-TermDocumentMatrix(corpus)
+inspect(tdm)
+
+# Para obtener los términos que aparezcan más de x veces
+findFreqTerms(tdm, 20)
+
+tf<-rowSums(as.matrix(tdm))
+tf<-sort(tf, decreasing = TRUE)
+length(tf)
+top10<-tf[1:10]
+top10
+barplot(top10, horiz = TRUE)
