@@ -1,0 +1,44 @@
+Título
+
+Todas las hojas van numeradas
+
+Todas las hojas llevan una cabecera que contendrá: Título y autor
+Normalmente el título va a la izquierda y el autor a la derecha
+
+Siempre se mantendrán los mismos márgenes, tipos de letra, interlineados, justificado, etc.
+
+Índice:
+Apartados con subapartados, etc, con número de página
+
+Índice de figuras (opcional, solo si se han puesto figuras):
+
+Índice de tablas (opcional, solo si se han puesto tablas):
+
+Resumen
+8-10 líneas a modo de resumen del documento
+
+Palabras clave del texto
+
+Abstract (lo mismo del resumen pero en inglés)
+Keywords (palabras clave en inglés)
+
+Introducción: Motivaciones que han llevado a desarrollar el tema/investigación/proyecto
+
+Estado del arte (metodología):
+Todas las herramientas que has utilizado, para qué las vas a utilizar y una nota de bibliografía/webgrafía en la que obtener más información al respecto.
+Ejemplo: He utilizado Weka, es un software de blablablá, se puede encontrar más información en...
+
+Estado de la cuestión
+
+
+
+
+
+Conclusiones de la investigación que se ha hecho
+Futuras líneas de investigación
+
+Bibliografía
+
+Referencia a la ley de protección de datos si es necesario
+
+Software/líneas de código/enlace a un lugar en el que se pueda consultar (repositorio)
