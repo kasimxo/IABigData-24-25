@@ -20,7 +20,7 @@ data$Duración<-duracion
 fecha<-c()
 i<-1
 while(i<=dim(data)[[1]]){
-  if(as.numeric(unlist(strsplit(gsub(".* ", "", data$Fecha[[i]]), ":"))[[1]])==TRUE){
+  if(as.numeric(unlist(strsplit(gsub(".* ", "", data$Fecha[[i]]), ":"))[[1]])<12){
     fecha<-append(fecha,  "M"   )
   } else {
     fecha<-append(fecha,  "T"   )
