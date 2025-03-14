@@ -27,6 +27,7 @@ while(i<=dim(data)[[1]]){
   }
   i<-i+1
 }
+fecha
 data$Fecha<-fecha
 
 # Eliminamos la columna id
