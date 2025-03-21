@@ -1,0 +1,146 @@
+#--- Plantillas ---#
+# Plantilla pasajero
+(deftemplate pasajero
+	(slot id (type INTEGER))
+    (slot Clase (type SYMBOL) (allowed-symbols T P S))
+    (slot Sexo (type SYMBOL) (allowed-symbols male female))
+    (slot Edad (type SYMBOL) (allowed-symbols J A M N))
+    (slot Precio (type SYMBOL) (allowed-symbols C A B))
+)
+
+# Plantilla supervivencia
+(deftemplate supervivencia
+	(slot id (type INTEGER))
+	(slot Survived (type SYMBOL) (allowed-symbols No Si))
+)
+
+#Definicion de reglas
+#Regla 1
+(defrule Hombre-Adulto
+	(pasajero
+		(id ?Id)
+		(Sexo male)
+		(Edad J|A|M)
+        (Clase ?C)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived No)
+	)
+)
+)
+
+#Regla 2
+(defrule Mujer-S
+	(pasajero
+		(id ?Id)
+		(Sexo female)
+		(Clase S)
+        (Edad ?E)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived Si)
+	)
+)
+)
+
+#Regla 3
+(defrule Mujer-P
+	(pasajero
+		(id ?Id)
+		(Sexo female)
+		(Clase P)
+        (Edad ?E)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived Si)
+	)
+)
+)
+
+
+(deffacts hechos 
+(pasajero (id 611) (Clase T) (Sexo female) (Edad A) (Precio B))
+(pasajero (id 434) (Clase T) (Sexo male) (Edad J) (Precio C))
+(pasajero (id 57) (Clase S) (Sexo female) (Edad J) (Precio C))
+(pasajero (id 490) (Clase T) (Sexo male) (Edad N) (Precio B))
+(pasajero (id 367) (Clase P) (Sexo female) (Edad M) (Precio A))
+(pasajero (id 315) (Clase S) (Sexo male) (Edad M) (Precio B))
+(pasajero (id 669) (Clase T) (Sexo male) (Edad M) (Precio C))
+(pasajero (id 459) (Clase S) (Sexo female) (Edad M) (Precio C))
+(pasajero (id 180) (Clase T) (Sexo male) (Edad A) (Precio C))
+(pasajero (id 766) (Clase P) (Sexo female) (Edad M) (Precio A))
+(pasajero (id 199) (Clase T) (Sexo female) (Edad A) (Precio C))
+(pasajero (id 104) (Clase T) (Sexo male) (Edad A) (Precio C))
+(pasajero (id 654) (Clase T) (Sexo female) (Edad A) (Precio C))
+(pasajero (id 819) (Clase T) (Sexo male) (Edad M) (Precio C))
+(pasajero (id 782) (Clase P) (Sexo female) (Edad J) (Precio A))
+(pasajero (id 297) (Clase T) (Sexo male) (Edad J) (Precio C))
+(pasajero (id 775) (Clase S) (Sexo female) (Edad M) (Precio B))
+(pasajero (id 353) (Clase T) (Sexo male) (Edad J) (Precio C))
+(pasajero (id 665) (Clase T) (Sexo male) (Edad J) (Precio C))
+(pasajero (id 670) (Clase P) (Sexo female) (Edad A) (Precio A))
+)
+
+# --- FUZZY CLIPS --- #
+#Regla 1
+(defrule Hombre-Adulto
+    (declare (CF 0.86))
+	(pasajero
+		(id ?Id)
+		(Sexo male)
+		(Edad J|A|M)
+        (Clase ?C)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived No)
+	)
+)
+)
+
+#Regla 2
+(defrule Mujer-S
+    (declare (CF 0.93))
+	(pasajero
+		(id ?Id)
+		(Sexo female)
+		(Clase S)
+        (Edad ?E)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived Si)
+	)
+)
+)
+
+#Regla 3
+(defrule Mujer-P
+    (declare (CF 0.97))
+	(pasajero
+		(id ?Id)
+		(Sexo female)
+		(Clase P)
+        (Edad ?E)
+        (Precio ?P)
+	)
+=>
+(assert (supervivencia
+		(id ?Id)
+		(Survived Si)
+	)
+)
+)
